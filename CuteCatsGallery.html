@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meow or Never</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #DA70D6;
+        }
+        img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 10px;
+            margin: 10px;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery div {
+            margin: 10px;
+            flex: 1 1 300px;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+
+<input type="text" id="searchInput" placeholder="Find your cat">
+<button onclick="searchText()">Search</button>
+
+<script>
+    function searchText() {
+        
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        
+        
+        const highlights = document.querySelectorAll('.highlight');
+        highlights.forEach(highlight => {
+            highlight.classList.remove('highlight');
+        });
+        
+        
+        if (input) {
+            const items = document.querySelectorAll('.gallery div');
+            items.forEach(item => {
+                const label = item.querySelector('p').innerText.toLowerCase();
+                if (label.includes(input)) {
+                    
+                    item.querySelector('p').classList.add('highlight');
+                    
+                    item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        }
+    }
+</script>
+
+<h1>Dispaly Your Cats!</h1>
+
+<div class="gallery">
+    <div>
+        <img src="Nala.jpg" alt="Cute Cat 1">
+        <p>Nola Granola</p>
+    </div>
+    <div>
+        <img src="Star.jpg" alt="Cute Cat 2">
+        <p>Starzie Bear Baby</p>
+    </div>
+    <div>
+        <img src="Jackson.jpg" alt="Cute Cat 3">
+        <p>Jackie Wackie</p>
+    </div>
+    <div>
+        <img src="Soft.jpg" alt="Cute Cat 4">
+        <p>Softie Woftie</p>
+    </div>
+</div>
+
+</body>
+</html>
